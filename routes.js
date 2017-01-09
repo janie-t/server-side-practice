@@ -1,34 +1,25 @@
-var development = require('./knexfile').development
-var knex = require('knex')(development)
+console.log("It is working")
+
+var db = require('./db')
+
+
+function resources(req, res){
+  db.grabResources()
+  .then(function(resources){
+    res.json({data: resources})
+  })
+
+}
+
+
+
+
+// function addResourceToTable (req, res) {
+//   db.addResourceToTable(req.body)
+//   res.redirect('/resource')
+// }
+
 
 module.exports = {
-  getHome: getHome
-  // getIndex: getIndex
-}
-
-function getHome (req, res) {
-  res.render('wekaNumbersIndex')
-}
-
-function getIndex (req, res) {
-  knex('wekaContacts')
-    .select('wekaContacts.name').from('wekaContacts')
-    .then(function (dataArray){
-      var dataObject = {wekaNames: dataArray}
-      res.render('wekaNumbersIndex', dataObject)
-    })
-    .catch(error => console.log("error!!!"))
-}
-
-function newContact (req, res) {
-  res.render('wekaNumbersNew')
-}
-
-function createContact (req, res) {
-  var newContact = req.body
-  knex('wekaContacts')
-    .insert(newContact)
-    .then(id => {
-      res.redirect('/index')
-    })
+  resources
 }
