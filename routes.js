@@ -8,9 +8,16 @@ function resources(req, res){
   .then(function(resources){
     res.json({data: resources})
   })
-
 }
 
+function renderIndividualId(req, res) {
+  var id = req.params.id
+  db.grabIndividualResource(id)
+    .then(individualResource => {
+      console.log(individualResource)
+    res.json(individualResource[0])
+  })
+}
 
 
 
@@ -21,5 +28,6 @@ function resources(req, res){
 
 
 module.exports = {
-  resources
+  resources,
+  renderIndividualId
 }

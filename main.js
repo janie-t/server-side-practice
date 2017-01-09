@@ -16,8 +16,10 @@ app.use('/', express.static(path.join(__dirname, 'public')))
 // stuff above are all setup type things
 
 app.get('/api/v1/resources', routes.resources)
+//app.get('/api/v1/resources/form', routes.renderForm)
+app.get('/api/v1/resources/:id', routes.renderIndividualId)
+//app.post('/api/v1/resources/', routes.addResourceToTable)
 
-// app.post('/api/v1/resources/', routes.addResourceToTable)
 
 
 module.exports = app

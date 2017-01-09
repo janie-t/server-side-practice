@@ -8,21 +8,20 @@ function grabResources(){
 }
 
 function grabIndividualResource(id){
-  return knex('resources')
+  return knex('wekaContacts')
   .select('*')
-  .where({resource_id: id})
+  .where({id: id})
 }
 
-
-// function addResourceToTable (data) {
-//   delete data.submit
-//   console.log(data);
-//   return knex('resources')
-//   .insert(data)
-// }
+function addResourceToTable (data) {
+  delete data.submit
+  console.log(data);
+  return knex('resources')
+  .insert(data)
+}
 
 module.exports = {
-  grabResources
-  // grabIndividualResource,
-  // addResourceToTable
+  grabResources,
+  grabIndividualResource,
+  addResourceToTable
 }

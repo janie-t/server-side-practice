@@ -5,8 +5,7 @@ var template = Handlebars.compile(source);
 
 document.addEventListener('DOMContentLoaded', function(e){
   $.get('api/v1/resources')
-  .done(function(response){
-    console.log(response);
+  .done(response => {
     $('.container').append(template(response))
   })
 
